@@ -18,7 +18,25 @@ pub extern "C" fn calculate_fibonacci_ffi(n: u32) -> u64 {
     rt.block_on(crate::calculate_fibonacci(n))
 }
 ```
+## General rule
 
+If you have a function in Rust - 
+```rust
+pub async fn run_compare_ge<T, R>(...) -> Result<BinaryShare, ProtocolError>
+```
+the synchronous, FFI-safe wrapper should be written in src/ffi.rs:
+```rust
+#[no_mangle]
+pub extern "C" fn compare_ge_ffi(/* C-compatible args */) -> /* C-compatible return */ {
+    // Convert C args to Rust types
+    // Call run_compare_ge using a runtime if async
+    // Convert result to C-compatible return
+}
+```
+and then should be imported in lib.rs as -
+```rust
+pub mod ffi;
+```
 ## How to run
 
 1. **Clone the repository:**
