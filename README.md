@@ -11,7 +11,11 @@
    ```bash
    cargo build --release --target aarch64-apple-darwin
    ```
-2. **Run the python file rust_async.py with compatible architecture python :**
+3. **Check your Python architecture**
+   ```bash
+   python3 -c "import platform; print(platform.machine())"
+   ```
+4. **Run the python file rust_async.py with compatible architecture python :**
    ```bash
    python3.13 rust_async.py
    ```
