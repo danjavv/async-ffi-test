@@ -80,7 +80,7 @@ rust_lib.ffi_abt_create_msg1.restype = FFI_AbtCreateMsg1Result
    [lib]
    crate-type = ["cdylib", "rlib"]
    ```
-4. **Build the lbirary according to the underlying system architecture:**
+4. **Build the library according to the underlying system architecture:**
    For M1 macOS :-
    ```bash
    cargo build --release --target aarch64-apple-darwin
