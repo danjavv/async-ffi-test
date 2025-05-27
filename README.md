@@ -80,7 +80,7 @@ rust_lib.ffi_abt_create_msg1.restype = FFI_AbtCreateMsg1Result
    ```bash
    cargo build --release --target aarch64-apple-darwin
    ```
-    This will produce a shared library with extension .dylib (on macOS), .so (on Linux), etc.  
+    This will produce a shared library with extension .dylib (on macOS), .so (on Linux), .dll (on Windows) etc.  
     This library is getting used in the rust_async.py file
 
 4. **Check your Python architecture**
