@@ -37,6 +37,30 @@ and then should be imported in lib.rs as -
 ```rust
 pub mod ffi;
 ```
+If the Rust function is returning more than one value at once - 
+```rust
+let (state_cb_r1, msg1) = abt_create_msg1(&session_id, &ot_seeds_cb, p, eta_i, eta_m, rng);
+```
+create a C-compatible struct above the function ```rust pub extern "C" fn ffi_abt_create_msg1 ``` like this - 
+```rust
+#[repr(C)]
+pub struct FFI_AbtCreateMsg1Result {
+    state_cb_r1_ptr: *mut u8,
+    state_cb_r1_size: usize,
+    msg1_ptr: *mut u8,
+    msg1_size: usize,
+}
+use rand::rngs::OsRng;
+```
+and define it accordingly in the final python file -
+```python
+rust_lib.ffi_abt_create_msg1.argtypes = [
+    ctypes.POINTER(ctypes.c_ubyte), ctypes.c_size_t,  # session_id
+    ctypes.POINTER(ctypes.c_ubyte), ctypes.c_size_t,  # ot_seeds_cb
+    ctypes.c_void_p,  # rng_ptr
+]
+rust_lib.ffi_abt_create_msg1.restype = FFI_AbtCreateMsg1Result
+```
 ## How to run
 
 1. **Clone the repository:**
