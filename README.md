@@ -75,7 +75,12 @@ rust_lib.ffi_abt_create_msg1.restype = FFI_AbtCreateMsg1Result
    ```bash
    git clone <your-repo-url>
    ```
-2. **Build the lbirary according to the underlying system architecture:**
+2. **Add the cdylib target to your Cargo.toml file**
+   ```toml
+   [lib]
+   crate-type = ["cdylib", "rlib"]
+   ```
+4. **Build the lbirary according to the underlying system architecture:**
    For M1 macOS :-
    ```bash
    cargo build --release --target aarch64-apple-darwin
@@ -83,11 +88,11 @@ rust_lib.ffi_abt_create_msg1.restype = FFI_AbtCreateMsg1Result
     This will produce a shared library with extension .dylib (on macOS), .so (on Linux), .dll (on Windows) etc.  
     This library is getting used in the rust_async.py file
 
-4. **Check your Python architecture**
+5. **Check your Python architecture**
    ```bash
    python3 -c "import platform; print(platform.machine())"
    ```
-5. **Run the python file rust_async.py with compatible architecture python :**
+6. **Run the python file rust_async.py with compatible architecture python :**
    ```bash
    python3.13 rust_async.py
    ```
