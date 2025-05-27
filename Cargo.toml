@@ -1,0 +1,12 @@
+[package]
+name = "lol"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"] }
+
+[lib]
+name = "rust_async"
+crate-type = ["cdylib"]
+path = "src/lib.rs"
