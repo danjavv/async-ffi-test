@@ -54,6 +54,14 @@ use rand::rngs::OsRng;
 ```
 and define it accordingly in the final python file -
 ```python
+class FFI_AbtCreateMsg1Result(ctypes.Structure):
+    _fields_ = [
+        ("state_cb_r1_ptr", ctypes.POINTER(ctypes.c_ubyte)),
+        ("state_cb_r1_size", ctypes.c_size_t),
+        ("msg1_ptr", ctypes.POINTER(ctypes.c_ubyte)),
+        ("msg1_size", ctypes.c_size_t),
+    ]
+
 rust_lib.ffi_abt_create_msg1.argtypes = [
     ctypes.POINTER(ctypes.c_ubyte), ctypes.c_size_t,  # session_id
     ctypes.POINTER(ctypes.c_ubyte), ctypes.c_size_t,  # ot_seeds_cb
