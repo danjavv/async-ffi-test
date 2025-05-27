@@ -1,5 +1,24 @@
 # Python wrappers for async Rust functions
 
+lib.rs contains three async Rust functions :- 
+
+1. pub async fn say_hello_after_delay // Simple async function that waits and returns a message
+2. pub async fn calculate_fibonacci // Async function that performs some computation
+3. pub async fn fetch_data // Async function with error handling
+
+ffi.rs contains python ffi for each of these functions
+
+For example :- 
+
+```rust
+// FFI wrapper for calculate_fibonacci
+#[no_mangle]
+pub extern "C" fn calculate_fibonacci_ffi(n: u32) -> u64 {
+    let rt = Runtime::new().unwrap();
+    rt.block_on(crate::calculate_fibonacci(n))
+}
+```
+
 ## How to run
 
 1. **Clone the repository:**
