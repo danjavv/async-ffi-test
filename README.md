@@ -31,6 +31,7 @@ pub extern "C" fn calculate_fibonacci_ffi(n: u32) -> u64 {
    cargo build --release --target aarch64-apple-darwin
    ```
     This will produce a shared library with extension .dylib (on macOS), .so (on Linux), etc.
+
     This library is getting used in the rust_async.py file
 
 4. **Check your Python architecture**
